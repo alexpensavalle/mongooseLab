@@ -1,0 +1,39 @@
+<%- include('../partials/header.ejs') -%>
+
+<h1>&nbsp&nbsp&nbsp&nbspAll Flights</h1>
+<table>
+  <tr class="tableHead">
+    <th>Flight Number</th>
+    <th>Airline</th>
+    <th>Airport</th>
+    <th>Date</th>
+    <th>&nbsp;</th>
+  </tr>
+  <% flights.forEach(function(m) {  
+      let d = new Date();
+      let n = d.toUTCString();
+      let checkDateConv = new Date(n).getTime();
+      let dateCheck = new Date(m.departs).getTime();
+      if( dateCheck < checkDateConv){ %> <tr class="tableBodyPast"> <% } else { %>
+    <tr class="tableBody">
+      <% } %>
+    <th><%= m.flightNo %></th>
+    <th><%= m.airline %></th>
+    <th><%= m.airport %></th>
+    <th><%= m.departs %></th>
+    <th><a href="/flights/<%= m._id %>"><button class="detailButton">DETAILS</button></a></th>
+  </tr>
+  <% }); %>
+
+</table>
+
+
+
+
+  <!-- <a href="/skills/new"><button class="back">ADD NEW SKILL</button></a> -->
+      
+
+
+
+
+<%- include('../partials/footer.ejs') -%>
